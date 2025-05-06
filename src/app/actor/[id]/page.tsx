@@ -10,7 +10,7 @@ export default async function ActorPage({ params }: { params: { id: string } }) 
 
     return (
         <div className="p-8 bg-gray-900 text-white">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-6xl mx-auto">
                 <div className="flex gap-6 items-start">
                     {person.image?.medium && (
                         <img src={person.image.medium} alt={person.name} className="rounded-lg w-28 lg:w-48" />
@@ -38,6 +38,8 @@ export default async function ActorPage({ params }: { params: { id: string } }) 
                                 id={credit._embedded.show.id}
                                 name={credit._embedded.show.name}
                                 image={credit._embedded.show.image || { medium: '/placeholder-image.png' }}
+                                genres={credit._embedded.show.genres}
+                                premiered={credit._embedded.show.premiered}
                             />
                         ))}
                     </div>

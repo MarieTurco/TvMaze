@@ -4,8 +4,8 @@ interface ShowCardProps {
     id: number;
     name: string;
     image: { medium: string };
-    genres: string[];
-    premiered: string;
+    genres?: string[];
+    premiered?: string;
 }
 
 export default function ShowCard({ id, name, image, genres, premiered }: ShowCardProps) {
@@ -19,9 +19,18 @@ export default function ShowCard({ id, name, image, genres, premiered }: ShowCar
                 />
                 <h2 className="text-xl text-center font-semibold text-gray-100">{name}</h2>
                 <div className="text-center text-gray-300 mb-6">
-                    <p className="text-lg italic">{genres.join(', ')}</p>
-                    <p className="text-lg">Diffusé à partir du {premiered}</p>
+                    {genres?.length ? (
+                        <p className="text-lg italic">{genres.join(', ')}</p>
+                    ) : (
+                        <p className="text-lg italic text-gray-500">Genres inconnus</p>
+                    )}
+                    {premiered ? (
+                        <p className="text-lg">Diffusé à partir du {premiered}</p>
+                    ) : (
+                        <p className="text-lg text-gray-500">Date de diffusion inconnue</p>
+                    )}
                 </div>
+
             </Link>
         </div>
     );
